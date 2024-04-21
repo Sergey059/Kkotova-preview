@@ -1,4 +1,12 @@
 @font-face {
+  font-family: "Montserrat-Medium";
+  src: url("../fonts/Montserrat-Medium.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "RobotoSlab-Bold";
   src: url("../fonts/RobotoSlab-Bold.woff2") format("woff2");
   font-weight: 400;
@@ -9,14 +17,6 @@
 @font-face {
   font-family: "Montserrat-Regular";
   src: url("../fonts/Montserrat-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Montserrat-Medium";
-  src: url("../fonts/Montserrat-Medium.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -437,13 +437,6 @@ body {
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
   color: #202A32;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
   overflow-x: hidden;
   scroll-behavior: smooth;
   background-color: #f0f0f0;
@@ -571,15 +564,14 @@ img {
   padding: 0 10px;
 }
 
-.content {
-  -webkit-box-flex: 1;
-  -ms-flex: 1 0 auto;
-  flex: 1 0 auto;
-}
-
 .icon {
   width: 18px;
   height: 18px;
+}
+
+.content {
+  height: 100%;
+  z-index: 100;
 }
 
 .icon {
@@ -675,80 +667,20 @@ img {
 }
 
 .header {
-  padding: 20px 0;
+  padding: 12px 0;
+  width: 100%;
+  position: fixed;
+  z-index: 0;
 }
 
 .header__title {
+  font-size: 24px;
   text-align: center;
 }
 
 .taro {
-  padding: 0 24px;
-}
-
-.taro__list {
-  display: grid;
-  grid-template-columns: repeat(12, 90px);
-  gap: 12px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.taro__card {
-  position: relative;
-  cursor: pointer;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-  -webkit-perspective: 1000px;
-  perspective: 1000px;
-}
-
-.taro__card:hover {
-  -webkit-transform: scale3d(1.02, 1.02, 1.02);
-  transform: scale3d(1.02, 1.02, 1.02);
-}
-
-.taro__card:hover .taro__text {
-  opacity: 1;
-  z-index: 3;
-}
-
-.taro__images {
-  width: 90px;
-  height: 150px;
-  position: relative;
-  border-radius: 7px;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.taro__img {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.taro__img-back {
-  z-index: 2;
-}
-
-.taro__img-front {
-  opacity: 0;
-  z-index: 1;
-}
-
-.taro__text {
-  line-height: 1.2;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  padding: 90px 0;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -758,108 +690,133 @@ img {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  color: #fff;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.6);
-  opacity: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.taro__btn {
+  margin: 36px 0;
+  padding: 0 36px;
+  line-height: 42px;
+  border: 1px solid #999;
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.taro__btn:hover {
+  border-color: #111;
+}
+
+.taro__btn.none {
+  display: none;
+}
+
+.taro__list {
+  position: relative;
+  padding-bottom: 180px;
+  padding-right: 75px;
+  height: 70vh;
+  display: grid;
+  grid-template-columns: repeat(7, 36px);
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.taro__card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 200px;
+  border-radius: 7px;
+  border: 1px solid #444;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
   -webkit-transition: 0.3s;
   transition: 0.3s;
-  border-radius: 7px;
-  font-size: 14px;
 }
 
-.taro__desc {
-  text-align: center;
-  color: red;
-  height: 0;
-  -webkit-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: 0.3s 2.3s;
-  transition: 0.3s 2.3s;
-}
-
-.flip {
-  -webkit-animation: flipAnimation 2s forwards;
-  animation: flipAnimation 2s forwards;
-  z-index: 100;
-}
-
-.flip .taro__text {
-  display: none;
-}
-
-.flip .taro__img {
-  -webkit-transition: 0.3s 0.1s;
-  transition: 0.3s 0.1s;
-}
-
-.flip .taro__img-back {
-  display: none;
-  opacity: 0;
-}
-
-.flip .taro__img-front {
-  opacity: 1;
-  z-index: 2;
-}
-
-.fade::before {
-  position: fixed;
+.taro__card::before {
+  display: block;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   content: "";
-  display: block;
-  background: rgba(0, 0, 0, 0.9);
-  -webkit-transition: 0.3s 0.1s;
-  transition: 0.3s 0.1s;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  z-index: 2;
+}
+
+.taro__open {
+  padding: 24px;
+  line-height: 1.2;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  opacity: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  z-index: -3;
+}
+
+.layout .taro__card {
+  top: 0;
+  left: 0;
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+  cursor: pointer;
+}
+
+.layout .taro__card:hover {
   z-index: 100;
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
 }
 
-.fade .taro__desc {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
+.layout .taro__card:hover .taro__open {
+  opacity: 1;
+  z-index: 3;
 }
 
-@-webkit-keyframes flipAnimation {
-  0% {
-    -webkit-transform: rotateY(90deg);
-    transform: rotateY(90deg);
-  }
-
-  50% {
-    -webkit-transform: rotateY(180deg);
-    transform: rotateY(180deg);
-  }
-
-  100% {
-    -webkit-transform: scale(2);
-    transform: scale(2);
-  }
-}
-
-@keyframes flipAnimation {
-  0% {
-    -webkit-transform: rotateY(90deg);
-    transform: rotateY(90deg);
-  }
-
-  50% {
-    -webkit-transform: rotateY(180deg);
-    transform: rotateY(180deg);
-  }
-
-  100% {
-    -webkit-transform: scale(2);
-    transform: scale(2);
-  }
+.layout .taro__card:hover::before {
+  opacity: 1;
 }
 
 .footer {
   padding: 12px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 }
 
 .footer__copy {
@@ -871,6 +828,18 @@ img {
   .container {
     padding: 0 20px;
     max-width: 1440px;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .taro__list {
+    grid-template-columns: repeat(15, 36px);
+  }
+}
+
+@media only screen and (min-width: 64em) {
+  .taro__list {
+    grid-template-columns: repeat(15, 60px);
   }
 }
 
