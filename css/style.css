@@ -7,8 +7,8 @@
 }
 
 @font-face {
-  font-family: "RobotoSlab-Bold";
-  src: url("../fonts/RobotoSlab-Bold.woff2") format("woff2");
+  font-family: "RobotoSlab-Regular";
+  src: url("../fonts/RobotoSlab-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -23,8 +23,8 @@
 }
 
 @font-face {
-  font-family: "RobotoSlab-Regular";
-  src: url("../fonts/RobotoSlab-Regular.woff2") format("woff2");
+  font-family: "RobotoSlab-Bold";
+  src: url("../fonts/RobotoSlab-Bold.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -679,6 +679,7 @@ img {
 }
 
 .taro {
+  position: relative;
   padding: 90px 0;
   height: 100%;
   display: -webkit-box;
@@ -696,8 +697,12 @@ img {
   flex-direction: column;
 }
 
+.taro__btns {
+  margin: 24px;
+  height: 44px;
+}
+
 .taro__btn {
-  margin: 36px 0;
   padding: 0 36px;
   line-height: 42px;
   border: 1px solid #999;
@@ -736,7 +741,7 @@ img {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   width: 120px;
-  height: 200px;
+  height: 210px;
   border-radius: 7px;
   border: 1px solid #444;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -787,6 +792,49 @@ img {
   z-index: -3;
 }
 
+.taro__animation {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background-color: red;
+  z-index: -1;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.taro__animation.view {
+  -webkit-animation: preloadAnimation 3s;
+  animation: preloadAnimation 3s;
+}
+
+.taro__desc {
+  position: fixed;
+  bottom: 25%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) scaleY(0);
+  -ms-transform: translateX(-50%) scaleY(0);
+  transform: translateX(-50%) scaleY(0);
+  z-index: -100;
+  opacity: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  color: #fff;
+  font-size: 18px;
+}
+
+.taro__desc.active {
+  opacity: 1;
+  -webkit-transform: translateX(-50%) scaleY(1);
+  -ms-transform: translateX(-50%) scaleY(1);
+  transform: translateX(-50%) scaleY(1);
+  z-index: 100;
+}
+
 .layout .taro__card {
   top: 0;
   left: 0;
@@ -810,6 +858,179 @@ img {
 
 .layout .taro__card:hover::before {
   opacity: 1;
+}
+
+.layout .flip {
+  top: 25%;
+  left: calc(50% - 60px);
+}
+
+.flip {
+  position: fixed;
+  -webkit-animation: flipAnimation 2s forwards;
+  animation: flipAnimation 2s forwards;
+  z-index: 100;
+  cursor: default;
+}
+
+.flip::before {
+  display: none;
+}
+
+.flip .taro__open {
+  display: none;
+}
+
+.fade {
+  z-index: 99;
+  -webkit-animation: fadeAnimation 2s forwards;
+  animation: fadeAnimation 2s forwards;
+}
+
+@-webkit-keyframes preloadAnimation {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    z-index: 99;
+  }
+
+  50% {
+    -webkit-transform: scale(5);
+    transform: scale(5);
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scale(1) translateY(120%);
+    transform: scale(1) translateY(120%);
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes preloadAnimation {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    z-index: 99;
+  }
+
+  50% {
+    -webkit-transform: scale(5);
+    transform: scale(5);
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scale(1) translateY(120%);
+    transform: scale(1) translateY(120%);
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadeAnimation {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+
+  50% {
+    -webkit-transform: scale(5);
+    transform: scale(5);
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+  }
+
+  100% {
+    top: 0;
+    left: 0;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    border-radius: 0;
+  }
+}
+
+@keyframes fadeAnimation {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+
+  50% {
+    -webkit-transform: scale(5);
+    transform: scale(5);
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+  }
+
+  100% {
+    top: 0;
+    left: 0;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    border-radius: 0;
+  }
+}
+
+@-webkit-keyframes flipAnimation {
+  0% {
+    -webkit-transform: rotateY(90deg);
+    transform: rotateY(90deg);
+  }
+
+  50% {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
+
+  100% {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+  }
+}
+
+@keyframes flipAnimation {
+  0% {
+    -webkit-transform: rotateY(90deg);
+    transform: rotateY(90deg);
+  }
+
+  50% {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
+
+  100% {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+  }
 }
 
 .footer {
